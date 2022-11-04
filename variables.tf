@@ -1,9 +1,11 @@
 variable "azr_rg_name" {
   description = "Name of Resource Group of the Storage Account"
+  type = string
 }
 
 variable "azr_location" {
   description = "Azure location of the Storage Account"
+  type = string
 }
 
 variable "azr_storage_account_name" {
@@ -18,6 +20,7 @@ variable "azr_storage_account_name" {
 variable "azr_storage_account_tier" {
   description = "Tier of the Storage Account. Available options are: Standard, Premium"
   type = string
+  default = "Standard"
   validation {
     condition = contains(["Standard","Premium"], var.azr_storage_account_tier)
     error_message = "Invalid Storage Account tier. Can only be either Standard or Premium."
@@ -27,6 +30,7 @@ variable "azr_storage_account_tier" {
 variable "azr_storage_account_replication_type" {
   description = "Replication option for the Storage Account: Local Redundant Storage, Geo-Redundant Storage, Read-Access Geo-Redundant Storage and Zone-Redundant Storage. Available options are: LRS, GRS, RAGRS, ZRS."
   type = string
+  default = "LRS"
   validation {
     condition = contains(["LRS","GRS","RAGRS","ZRS"], var.azr_storage_account_replication_type)
     error_message = "Invalid Storage Account replication type. Can only be either LRS, GRS, RAGRS or ZRS."
@@ -36,6 +40,7 @@ variable "azr_storage_account_replication_type" {
 variable "azr_storage_account_sku" {
   description = "SKU of the Storage Account. Available options are: Storage, StorageV2, BlobStorage."
   type = string
+  default = "StorageV2"
   validation {
     condition = contains(["Storage","StorageV2","BlobStorage"], var.azr_storage_account_sku)
     error_message = "Invalid Storage Account SKU. Can only be either Storage, StorageV2 or BlobStorage."
